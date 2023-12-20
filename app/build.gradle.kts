@@ -5,11 +5,11 @@ plugins {
 }
 
 android {
-    namespace = "com.kraigdev.myapplication"
+    namespace = "com.kraigdev.themovie"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.kraigdev.myapplication"
+        applicationId = "com.kraigdev.themovie"
         minSdk = 29
         targetSdk = 34
         versionCode = 1

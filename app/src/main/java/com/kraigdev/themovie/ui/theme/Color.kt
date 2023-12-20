@@ -1,4 +1,4 @@
-package com.kraigdev.myapplication.ui.theme
+package com.kraigdev.themovie.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
