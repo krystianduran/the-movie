@@ -70,4 +70,8 @@ dependencies {
 
     // Navigation
     implementation(libs.androidx.navigation.compose)
+
+    // Pager and Indicators - Accompanist
+    implementation(libs.accompanist.pager)
+    implementation(libs.accompanist.pager.indicators)
 }
