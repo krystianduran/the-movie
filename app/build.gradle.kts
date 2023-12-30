@@ -2,6 +2,8 @@
 plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.kotlinAndroid)
+    alias(libs.plugins.hilt.android.plugin)
+    alias(libs.plugins.org.jetbrains.kotlin.kapt)
 }
 
 android {
@@ -31,11 +33,11 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "17"
     }
     buildFeatures {
         compose = true
@@ -47,6 +49,9 @@ android {
         resources {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
         }
+    }
+    kapt {
+        correctErrorTypes = true
     }
 }
 
@@ -74,4 +79,9 @@ dependencies {
     // Pager and Indicators - Accompanist
     implementation(libs.accompanist.pager)
     implementation(libs.accompanist.pager.indicators)
+
+    // Hilt
+    implementation(libs.hilt.android)
+    kapt(libs.hilt.android.compiler)
+    implementation(libs.hilt.navigation.compose)
 }
