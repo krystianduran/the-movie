@@ -1,26 +1,26 @@
-package com.kraigdev.themovie.modules.onboarding
+package com.kraigdev.themovie.modules.onboarding.presentation
 
 import androidx.annotation.DrawableRes
 import com.kraigdev.themovie.R
 
-sealed class OnBoardingPage(
+sealed class OnboardingPage(
     @DrawableRes val image: Int,
     val title: String,
     val description: String
 ) {
-    data object First : OnBoardingPage(
+    data object First : OnboardingPage(
         image = R.drawable.first_image,
         title = "First Page",
         description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit 1."
     )
 
-    data object Second : OnBoardingPage(
+    data object Second : OnboardingPage(
         image = R.drawable.second_image,
         title = "Second Page",
         description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit 2."
     )
 
-    data object Third : OnBoardingPage(
+    data object Third : OnboardingPage(
         image = R.drawable.third_image,
         title = "Third Page",
         description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit 3."

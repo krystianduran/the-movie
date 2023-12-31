@@ -1,5 +1,6 @@
-package com.kraigdev.themovie.modules.splash
+package com.kraigdev.themovie.modules.splash.presentation
 
+import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
@@ -17,18 +18,29 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.sp
 import com.kraigdev.themovie.R
+import com.kraigdev.themovie.core.navigation.AppScreens
 import com.kraigdev.themovie.ui.theme.FirstGradientColor
 import com.kraigdev.themovie.ui.theme.SecondGradientColor
 import com.kraigdev.themovie.ui.theme.SplashBackground
 import kotlinx.coroutines.delay
 
-private const val SPLASH_DELAY = 3000L
+private const val SPLASH_DELAY = 1000L
 
 @Composable
-fun SplashScreen(onNavigate: () -> Unit) {
-    LaunchedEffect(Unit) {
+fun SplashScreen(
+    state: SplashViewModel.UiState,
+    onNavigate: (AppScreens) -> Unit
+) {
+    LaunchedEffect(state) {
         delay(SPLASH_DELAY)
-        onNavigate()
+        Log.d("SplashScreen", "showOnboarding: ${state.showOnboarding}")
+        state.showOnboarding?.let {
+            if (it) {
+                onNavigate(AppScreens.Onboarding)
+            } else {
+                onNavigate(AppScreens.Main)
+            }
+        }
     }
 
     SplashScreenView()
@@ -37,7 +49,10 @@ fun SplashScreen(onNavigate: () -> Unit) {
 @Preview(showBackground = true, showSystemUi = true)
 @Composable
 private fun SplashScreenPreview() {
-    SplashScreen(onNavigate = {})
+    SplashScreen(
+        state = SplashViewModel.UiState(),
+        onNavigate = {}
+    )
 }
 
 @Composable

@@ -1,7 +1,6 @@
-package com.kraigdev.themovie.modules.onboarding
+package com.kraigdev.themovie.modules.onboarding.presentation
 
 import androidx.compose.animation.AnimatedVisibility
-import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -31,13 +30,13 @@ import com.google.accompanist.pager.PagerState
 import com.google.accompanist.pager.rememberPagerState
 import com.kraigdev.themovie.ui.theme.SplashBackground
 
-@OptIn(ExperimentalPagerApi::class, ExperimentalFoundationApi::class)
+@OptIn(ExperimentalPagerApi::class)
 @Composable
-fun OnboardingScreen(onNavigate: () -> Unit) {
+fun OnboardingScreen(onFinishOnboarding: () -> Unit) {
     val pages = listOf(
-        OnBoardingPage.First,
-        OnBoardingPage.Second,
-        OnBoardingPage.Third
+        OnboardingPage.First,
+        OnboardingPage.Second,
+        OnboardingPage.Third
     )
     val pagerState = rememberPagerState()
 
@@ -59,7 +58,7 @@ fun OnboardingScreen(onNavigate: () -> Unit) {
         FinishButton(
             modifier = Modifier.weight(1f),
             pagerState = pagerState,
-            onClick = onNavigate
+            onClick = onFinishOnboarding
         )
     }
 }
@@ -68,7 +67,7 @@ fun OnboardingScreen(onNavigate: () -> Unit) {
 @Preview(showBackground = true)
 fun FirstOnBoardingScreenPreview() {
     Column(modifier = Modifier.fillMaxSize()) {
-        OnboardingView(onBoardingPage = OnBoardingPage.First)
+        OnboardingView(onBoardingPage = OnboardingPage.First)
     }
 }
 
@@ -76,7 +75,7 @@ fun FirstOnBoardingScreenPreview() {
 @Preview(showBackground = true)
 fun SecondOnBoardingScreenPreview() {
     Column(modifier = Modifier.fillMaxSize()) {
-        OnboardingView(onBoardingPage = OnBoardingPage.Second)
+        OnboardingView(onBoardingPage = OnboardingPage.Second)
     }
 }
 
@@ -84,12 +83,12 @@ fun SecondOnBoardingScreenPreview() {
 @Preview(showBackground = true)
 fun ThirdOnBoardingScreenPreview() {
     Column(modifier = Modifier.fillMaxSize()) {
-        OnboardingView(onBoardingPage = OnBoardingPage.Third)
+        OnboardingView(onBoardingPage = OnboardingPage.Third)
     }
 }
 
 @Composable
-private fun OnboardingView(onBoardingPage: OnBoardingPage) {
+private fun OnboardingView(onBoardingPage: OnboardingPage) {
     Column(
         modifier = Modifier
             .fillMaxWidth(),
