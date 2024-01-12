@@ -38,7 +38,7 @@ fun SplashScreen(
             if (it) {
                 onNavigate(AppScreens.Onboarding)
             } else {
-                onNavigate(AppScreens.Main)
+                onNavigate(AppScreens.AuthNavigation)
             }
         }
     }

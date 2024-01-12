@@ -3,6 +3,7 @@ plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.kotlinAndroid)
     alias(libs.plugins.hilt.android.plugin)
+    alias(libs.plugins.com.google.gms.google.services)
     alias(libs.plugins.org.jetbrains.kotlin.kapt)
 }
 
@@ -88,4 +89,9 @@ dependencies {
 
     // Datastore
     implementation(libs.datastore.preferences)
+
+    // Firebase
+    implementation(platform(libs.firebase.bom))
+    implementation(libs.firebase.auth)
+    implementation(libs.play.services.auth)
 }

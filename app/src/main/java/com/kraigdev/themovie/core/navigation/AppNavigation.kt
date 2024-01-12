@@ -8,6 +8,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.kraigdev.themovie.core.navigation.routes.auth.authNavigation
 import com.kraigdev.themovie.modules.main.MainScreen
 import com.kraigdev.themovie.modules.onboarding.presentation.OnboardingScreen
 import com.kraigdev.themovie.modules.onboarding.presentation.OnboardingViewModel
@@ -44,7 +45,7 @@ fun AppNavigation() {
             LaunchedEffect(state) {
                 if (state.success) {
                     navController.popBackStack()
-                    navController.navigate(AppScreens.Main.route)
+                    navController.navigate(AppScreens.AuthNavigation.route)
                 }
             }
 
@@ -54,6 +55,9 @@ fun AppNavigation() {
                 }
             )
         }
+        authNavigation(
+            navController = navController
+        )
         composable(AppScreens.Main.route) {
             MainScreen()
         }
