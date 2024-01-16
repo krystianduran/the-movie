@@ -3,6 +3,7 @@ package com.kraigdev.themovie.core.di.common.google
 import android.content.Context
 import com.google.android.gms.auth.api.identity.Identity
 import com.kraigdev.themovie.core.auth.GoogleAuthUiClient
+import com.kraigdev.themovie.core.auth.GoogleEmailAuthClient
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -22,4 +23,8 @@ object AuthModule {
         context = context,
         oneTapClient = Identity.getSignInClient(context)
     )
+
+    @Provides
+    @Singleton
+    fun provideGoogleEmailAuthClient(): GoogleEmailAuthClient = GoogleEmailAuthClient()
 }

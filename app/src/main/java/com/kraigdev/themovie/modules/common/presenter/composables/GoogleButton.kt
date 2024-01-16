@@ -15,6 +15,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -28,7 +29,7 @@ fun GoogleButton(
     shape: CornerBasedShape = MaterialTheme.shapes.medium
 ) {
     Surface(
-        modifier = modifier.clickable { onClicked() },
+        modifier = modifier.clip(shape).clickable { onClicked() },
         shape = shape,
         border = BorderStroke(width = 1.dp, color = Color.LightGray),
         color = MaterialTheme.colorScheme.surface

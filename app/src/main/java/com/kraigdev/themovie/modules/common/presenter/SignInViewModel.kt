@@ -4,8 +4,8 @@ import android.content.Intent
 import android.content.IntentSender
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.google.firebase.auth.AuthResult
 import com.kraigdev.themovie.core.auth.GoogleAuthUiClient
+import com.kraigdev.themovie.core.auth.GoogleEmailAuthClient
 import com.kraigdev.themovie.core.auth.SignInResult
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
@@ -16,20 +16,35 @@ import kotlinx.coroutines.launch
 
 @HiltViewModel
 class SignInViewModel @Inject constructor(
-    private val googleAuthUiClient: GoogleAuthUiClient
+    private val googleAuthUiClient: GoogleAuthUiClient,
+    private val googleEmailAuthClient: GoogleEmailAuthClient
 ) : ViewModel() {
 
     private val _state = MutableStateFlow(SignInState())
     val state = _state.asStateFlow()
 
-    fun onSignInWithEmailResult(result: AuthResult) {
-        _state.update {
-            it.copy(
-                isSignInSuccessful = result.user != null,
-                signInError = if (result.user == null) "Sign in failed" else null
+    fun onSignInWithEmailResult(
+        email: String,
+        password: String
+    ) {
+        viewModelScope.launch {
+            val signInResult = googleEmailAuthClient.signInWithEmailAndPassword(
+                email = email,
+                password = password
             )
+
+            _state.update {
+                it.copy(
+                    isSignInSuccessful = signInResult.user != null,
+                    signInError = if (signInResult.user == null) "Sign in failed" else null
+                )
+            }
         }
     }
+
+    fun getCurrentUser() = googleEmailAuthClient.getCurrentUser()
+
+    fun getSignInUser() = googleAuthUiClient.getSignInUser()
 
     fun sendResultData(result: Intent?) {
         viewModelScope.launch {
